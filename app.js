@@ -50,4 +50,23 @@ document.addEventListener("DOMContentLoaded", UI.displayBooks());
 
 // Event : Add a Book
 
+document.querySelector('#book-form').addEventListener('submit', e => {
+  // prevent default
+
+  e.preventDefault()
+
+  // get values from form
+
+  const title = document.getElementById('title').value
+  const author = document.getElementById('author').value
+  const code = document.getElementById('code').value
+
+  // instantiate book
+
+  const book = new Book(title,author,code)
+
+  console.log(book)
+
+})
+
 // Event : Remove a Book
