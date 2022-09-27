@@ -48,6 +48,10 @@ class UI {
     const container = document.querySelector(".container");
     const form = document.getElementById("book-form");
     container.insertBefore(div, form);
+
+    // disappear in 3s
+
+    setTimeout(() => document.querySelector(".alert").remove(), 3000);
   }
 
   static clearfields() {
@@ -94,6 +98,10 @@ document.querySelector("#book-form").addEventListener("submit", (e) => {
     // display a book
 
     UI.addBookList(book);
+
+    // success
+
+    UI.showAlert("success", "success");
 
     // clear fields
 
