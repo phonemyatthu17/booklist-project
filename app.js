@@ -40,6 +40,18 @@ class UI {
     <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>`;
     list.appendChild(row);
   }
+
+  static clearfields() {
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("code").value = "";
+  }
+
+  static deleteBook(el) {
+    if (el.classList.contains("delete")) {
+      el.parentElement.parentElement.remove();
+    }
+  }
 }
 
 // Store Class : Handle Storage
@@ -50,23 +62,32 @@ document.addEventListener("DOMContentLoaded", UI.displayBooks());
 
 // Event : Add a Book
 
-document.querySelector('#book-form').addEventListener('submit', e => {
+document.querySelector("#book-form").addEventListener("submit", (e) => {
   // prevent default
 
-  e.preventDefault()
+  e.preventDefault();
 
   // get values from form
 
-  const title = document.getElementById('title').value
-  const author = document.getElementById('author').value
-  const code = document.getElementById('code').value
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const code = document.getElementById("code").value;
 
   // instantiate book
 
-  const book = new Book(title,author,code)
+  const book = new Book(title, author, code);
 
-  console.log(book)
+  // display a book
 
-})
+  UI.addBookList(book);
+
+  // clear fields
+
+  UI.clearfields();
+});
 
 // Event : Remove a Book
+
+document.querySelector("#book-list").addEventListener("click", (e) => {
+  UI.deleteBook(e.target);
+});
